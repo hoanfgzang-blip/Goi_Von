@@ -1,0 +1,11 @@
+CREATE DATABASE goivon_db;
+
+USE goivon_db;
+
+CREATE TABLE investors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    amount DECIMAL(15,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
