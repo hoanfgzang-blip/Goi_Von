@@ -1,21 +1,18 @@
 ﻿name: Discord Commit Logger
 
-# Kích hoạt workflow khi có push vào nhánh main
 on:
   push:
     branches:
-      - main
+      - main  # hoặc nhánh bạn muốn theo dõi
 
 jobs:
   notify-discord:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repo để lấy commit
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Gửi log commit lên Discord
       - name: Send commit info to Discord
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -23,11 +20,16 @@ jobs:
           # Lấy commit mới nhất
           COMMIT_INFO=$(git log -1 --pretty=format:"%h - %an: %s")
           
-          # Lấy danh sách file thay đổi
-          FILES_CHANGED=$(git diff-tree --no-commit-id --name-status -r HEAD | awk '{print $2}' | paste -sd "," -)
+          # Lấy danh sách file thay đổi theo loại
+          MODIFIED=$(git diff-tree --no-commit-id --name-status -r HEAD | grep '^M' | awk '{print $2}' | paste -sd "," -)
+          ADDED=$(git diff-tree --no-commit-id --name-status -r HEAD | grep '^A' | awk '{print $2}' | paste -sd "," -)
+          DELETED=$(git diff-tree --no-commit-id --name-status -r HEAD | grep '^D' | awk '{print $2}' | paste -sd "," -)
           
-          # Gửi thông báo lên Discord
+          # Tạo nội dung thông báo
+          MESSAGE="New commit: $COMMIT_INFO\nModified: ${MODIFIED:-None}\nAdded: ${ADDED:-None}\nDeleted: ${DELETED:-None}"
+          
+          # Gửi lên Discord
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{\"content\": \"New commit: $COMMIT_INFO\nFiles changed: $FILES_CHANGED\"}" \
+               -d "{\"content\": \"$MESSAGE\"}" \
                $DISCORD_WEBHOOK
