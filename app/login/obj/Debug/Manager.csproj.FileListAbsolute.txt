@@ -1,0 +1,10 @@
+D:\BtCK\app\login\obj\Debug\Manager.csproj.AssemblyReference.cache
+D:\BtCK\app\login\obj\Debug\login.flogin.resources
+D:\BtCK\app\login\obj\Debug\login.Properties.Resources.resources
+D:\BtCK\app\login\obj\Debug\Manager.csproj.GenerateResource.cache
+D:\BtCK\app\login\obj\Debug\Manager.csproj.CoreCompileInputs.cache
+D:\BtCK\app\login\bin\Debug\login.exe.config
+D:\BtCK\app\login\bin\Debug\login.exe
+D:\BtCK\app\login\bin\Debug\login.pdb
+D:\BtCK\app\login\obj\Debug\login.exe
+D:\BtCK\app\login\obj\Debug\login.pdb

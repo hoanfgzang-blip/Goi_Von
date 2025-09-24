@@ -1,0 +1,11 @@
+D:\BtCK\app\QuanLiBanHang\bin\Debug\QuanLiBanHang.exe.config
+D:\BtCK\app\QuanLiBanHang\bin\Debug\QuanLiBanHang.exe
+D:\BtCK\app\QuanLiBanHang\bin\Debug\QuanLiBanHang.pdb
+D:\BtCK\app\QuanLiBanHang\obj\Debug\QuanLiBanHang.csproj.AssemblyReference.cache
+D:\BtCK\app\QuanLiBanHang\obj\Debug\QuanLiBanHang.Form1.resources
+D:\BtCK\app\QuanLiBanHang\obj\Debug\QuanLiBanHang.Properties.Resources.resources
+D:\BtCK\app\QuanLiBanHang\obj\Debug\QuanLiBanHang.csproj.GenerateResource.cache
+D:\BtCK\app\QuanLiBanHang\obj\Debug\QuanLiBanHang.csproj.CoreCompileInputs.cache
+D:\BtCK\app\QuanLiBanHang\obj\Debug\QuanLiBanHang.exe
+D:\BtCK\app\QuanLiBanHang\obj\Debug\QuanLiBanHang.pdb
+D:\BtCK\app\QuanLiBanHang\obj\Debug\QuanLiBanHang.exe.config
