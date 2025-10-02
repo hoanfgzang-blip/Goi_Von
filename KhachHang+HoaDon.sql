@@ -1,0 +1,47 @@
+CREATE TABLE KhachHang (
+    IdKhachHang INT IDENTITY(1,1) NOT NULL,
+    TenKhachHang NVARCHAR(100) NOT NULL,
+    MaKhachHang VARCHAR(50) NOT NULL,
+    Email NVARCHAR (250) NULL,
+    DiaChi NVARCHAR(250) NULL,
+    SDT VARCHAR(20) NULL,
+    NgayTao DATETIME2 DEFAULT GETDATE(),
+
+    CONSTRAINT PK_KhachHang PRIMARY KEY CLUSTERED (IdKhachHang),
+    CONSTRAINT UQ_KhachHang_MaKhachHang UNIQUE (MaKhachHang),
+    CONSTRAINT UQ_KhachHang_SDT UNIQUE (SDT)
+);
+GO
+
+CREATE TABLE DonDatHang (
+    IdDonHang INT IDENTITY(1,1) NOT NULL,
+    IdKhachHang INT NOT NULL,
+    SoDonHang VARCHAR(50) NOT NULL,
+    NgayDatHang DATETIME2 DEFAULT GETDATE(),
+    LoaiDonHang NVARCHAR(20) NULL,
+    TongTien DECIMAL(18,0) DEFAULT 0,
+    TrangThai INT NOT NULL DEFAULT 1, 
+    
+    CONSTRAINT PK_DonDatHang PRIMARY KEY CLUSTERED (IdDonHang),
+    CONSTRAINT UQ_DonDatHang_SoDonHang UNIQUE (SoDonHang),
+    CONSTRAINT FK_DonDatHang_KhachHang FOREIGN KEY (IdKhachHang) REFERENCES KhachHang(IdKhachHang) 
+);
+GO
+
+CREATE TABLE HoaDon (
+    IDHoaDon INT IDENTITY(1,1) NOT NULL,
+    IdDonHang INT NOT NULL,
+    MaMatHang VARCHAR(50) NOT NULL, 
+    NgayTao DATETIME2 DEFAULT GETDATE(),
+    NgayThanhToan DATETIME2 NULL,
+    
+    SoLuong INT NOT NULL,
+    GiaBan DECIMAL(18,0) NOT NULL,
+    TongTien AS (GiaBan * SoLuong), 
+
+    CONSTRAINT PK_HoaDon PRIMARY KEY CLUSTERED (IDHoaDon), 
+    CONSTRAINT FK_HD_DonDatHang FOREIGN KEY (IdDonHang) REFERENCES DonDatHang(IdDonHang), 
+    CONSTRAINT CK_HD_SoLuong CHECK (SoLuong > 0),
+    CONSTRAINT CK_HD_GiaBan CHECK (GiaBan >= 0)
+);
+GO
